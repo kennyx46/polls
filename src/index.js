@@ -5,7 +5,8 @@ import { Route } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 
 import './index.css';
-import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
+import QuestionsList from './components/QuestionsList';
 import * as serviceWorker from './serviceWorker';
 import store from './data/store';
 import history from './data/history'
@@ -13,7 +14,7 @@ import history from './data/history'
 ReactDOM.render(
     (<Provider store={store}>
         <ConnectedRouter history={history}>
-            <Route path="/" component={App} />
+            <Route path="/" component={QuestionsList} />
         </ConnectedRouter>
     </Provider>),
     document.getElementById('root'));
