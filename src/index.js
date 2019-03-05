@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import QuestionsList from './components/QuestionsList';
+import QuestionDetail from './components/QuestionDetail';
 import * as serviceWorker from './serviceWorker';
 import store from './data/store';
 import history from './data/history'
@@ -14,7 +15,10 @@ import history from './data/history'
 ReactDOM.render(
     (<Provider store={store}>
         <ConnectedRouter history={history}>
-            <Route path="/" component={QuestionsList} />
+            <Switch>
+                <Route path="/questions/:questionId" component={QuestionDetail} />
+                <Route path="/" component={QuestionsList} />
+            </Switch>
         </ConnectedRouter>
     </Provider>),
     document.getElementById('root'));
