@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { getQuestions } from '../../data/questions/actions';
 import QuestionsList from './QuestionsList';
+import { push } from 'connected-react-router';
 
 const mapStateToProps = (state) => ({
     questions: state.questions.list,
@@ -9,6 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getQuestions,
+    push
 };
 
 export default connect(

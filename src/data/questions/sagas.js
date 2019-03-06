@@ -1,4 +1,5 @@
 import { all, takeEvery, put, call, delay } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
 import { QUESTIONS } from '../actionTypes';
 import actions from './actions';
@@ -34,11 +35,23 @@ function* voteOnChoice(action) {
     }
 }
 
+function* createQuestion(action) {
+    try {
+        const { question } = action.payload;
+        const res = yield call(api.createQuestion, question);
+        yield put(actions.createQuestionSuccess());
+        yield put(push('/'));
+    } catch (error) {
+        yield put(actions.createQuestionError(error));
+    }
+}
+
 
 export default function* questionsSaga() {
     yield all([
         takeEvery(QUESTIONS.GET_QUESTIONS_REQUEST, getQuestions),
         takeEvery(QUESTIONS.GET_QUESTION_REQUEST, getQuestion),
         takeEvery(QUESTIONS.VOTE_ON_CHOICE_REQUEST, voteOnChoice),
+        takeEvery(QUESTIONS.CREATE_QUESTION_REQUEST, createQuestion),
     ]);
 }

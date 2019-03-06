@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { push } from 'connected-react-router';
 import './QuestionsList.css';
 import { Link } from 'react-router-dom';
 
@@ -19,17 +18,14 @@ export default class QuestionsList extends Component {
     }
 
     renderQuestion = (question) => {
-
         return (
-            <Link to={question.url}>
-                <Card key={question.url} className="questionCard">
-                    <Card.Header>{question.question}</Card.Header>
-                    <Card.Body>
-                        <Card.Title className="mb-2 text-muted">{formatDate(question.published_at)}</Card.Title>
-                        <Card.Subtitle>Choices: {question.choices.length}</Card.Subtitle>
-                    </Card.Body>
-                </Card>
-            </Link>
+            <Card key={question.url} className="questionCard" onClick={() => this.props.push(question.url)}>
+                <Card.Header>{question.question}</Card.Header>
+                <Card.Body>
+                    <Card.Title className="mb-2 text-muted">{formatDate(question.published_at)}</Card.Title>
+                    <Card.Subtitle>Choices: {question.choices.length}</Card.Subtitle>
+                </Card.Body>
+            </Card>
         );
     }
 
@@ -47,6 +43,9 @@ export default class QuestionsList extends Component {
         return (
             <Container>
                 <h1>Questions</h1>
+                <div className="newQuestionLink">
+                    <Link to='/questions/new'>New question</Link>
+                </div>
                 <Row>
                     {questions.map((this.renderQuestion))}
                 </Row>               

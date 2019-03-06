@@ -43,6 +43,20 @@ export const voteOnChoiceError = (error) => ({
     payload: { error }
 });
 
+export const createQuestion = (question) => ({
+    type: QUESTIONS.CREATE_QUESTION_REQUEST,
+    payload: { question }
+});
+
+export const createQuestionSuccess = () => ({
+    type: QUESTIONS.CREATE_QUESTION_SUCCESS,
+});
+
+export const createQuestionError = (error) => ({
+    type: QUESTIONS.CREATE_QUESTION_ERROR,
+    payload: { error }
+});
+
 
 export default {
     getQuestions,
@@ -54,4 +68,7 @@ export default {
     voteOnChoice,
     voteOnChoiceSuccess,
     voteOnChoiceError,
+    createQuestion,
+    createQuestionSuccess,
+    createQuestionError,
 }

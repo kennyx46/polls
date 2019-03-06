@@ -5,12 +5,10 @@ export const getCurrentQuestionChoicesWithPercentage = (state) => {
     
     const allVotes = choices.reduce((acc, choice) => acc + choice.votes, 0);
 
-    console.log(allVotes)
-
     const choicesWithPercentage = choices.map((choice) => ({
         ...choice, 
-        percentage: (100 * choice.votes / allVotes).toFixed(2),
-    }))
+        percentage: allVotes !== 0 ? (100 * choice.votes / allVotes).toFixed(2) : '0',
+    }));
 
-     return choicesWithPercentage
+    return choicesWithPercentage;
 }

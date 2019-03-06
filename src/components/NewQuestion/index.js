@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getQuestion, voteOnChoice, } from '../../data/questions/actions';
-import QuestionDetail from './QuestionDetail';
+import { createQuestion } from '../../data/questions/actions';
+import NewQuestion from './NewQuestion';
 import { getCurrentQuestionChoicesWithPercentage } from '../../data/questions/selectors';
 import { withRouter } from "react-router";
 
@@ -13,11 +13,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getQuestion,
-    voteOnChoice,
+    createQuestion,
 };
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withRouter,
-)(QuestionDetail);
+	connect(mapStateToProps, mapDispatchToProps),
+	withRouter,
+)(NewQuestion);
