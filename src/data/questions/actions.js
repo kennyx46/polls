@@ -34,8 +34,9 @@ export const voteOnChoice = ({ choiceUrl, questionId }) => ({
     payload: { choiceUrl, questionId }
 });
 
-export const voteOnChoiceSuccess = () => ({
+export const voteOnChoiceSuccess = ({ choiceUrl, votes }) => ({
     type: QUESTIONS.VOTE_ON_CHOICE_SUCCESS,
+    payload: { choiceUrl, votes }
 });
 
 export const voteOnChoiceError = (error) => ({

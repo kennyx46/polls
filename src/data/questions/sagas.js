@@ -1,4 +1,4 @@
-import { all, takeEvery, put, call, delay } from 'redux-saga/effects';
+import { all, takeEvery, put, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
 import { QUESTIONS } from '../actionTypes';
@@ -25,11 +25,10 @@ function* getQuestion(action) {
 
 function* voteOnChoice(action) {
     try {
-        const { choiceUrl, questionId } = action.payload;
+        const { choiceUrl } = action.payload;
         const res = yield call(api.voteOnChoice, choiceUrl);
-        yield put(actions.voteOnChoiceSuccess());
-        yield delay(2000);
-        yield put(actions.getQuestion({ questionId }));
+        // we can fetch data from server, without optimistic updates
+        yield put(actions.voteOnChoiceSuccess({ choiceUrl, votes: res.votes }));
     } catch (error) {
         yield put(actions.voteOnChoiceError(error));
     }
@@ -38,7 +37,7 @@ function* voteOnChoice(action) {
 function* createQuestion(action) {
     try {
         const { question } = action.payload;
-        const res = yield call(api.createQuestion, question);
+        yield call(api.createQuestion, question);
         yield put(actions.createQuestionSuccess());
         yield put(push('/'));
     } catch (error) {

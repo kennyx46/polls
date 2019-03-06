@@ -9,7 +9,7 @@ export default class NewQuestion extends Component {
 
     state = {
         question: '',
-        choices: [''],
+        choices: ['', ''], // minimum is two choices,
     }
 
     createQuestion = (event) => {
@@ -60,7 +60,7 @@ export default class NewQuestion extends Component {
                             onChange={(e) => this.changeChoice(index, e.target.value)}/>);
                     })}
                   </Form.Group>
-                  <Button disabled={!question || choices.length === 0} variant="primary" type="submit">Submit</Button>
+                  <Button disabled={!question || choices.some(choice => choice.length === 0)} variant="primary" type="submit">Submit</Button>
                 </Form>
             </Container>
         );

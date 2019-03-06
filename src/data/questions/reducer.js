@@ -19,6 +19,7 @@ export default (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 list: action.payload.questions,
+                current: null,
             }
         case QUESTIONS.GET_QUESTIONS_ERROR:
             return {
@@ -47,8 +48,21 @@ export default (state = initialState, action) => {
                 isVotingInProgress: true,
             }
         case QUESTIONS.VOTE_ON_CHOICE_SUCCESS:
+            const { choices } = state.current;
+            const updatedChoiceIndex = choices.findIndex(choice => choice.url === action.payload.choiceUrl);
             return {
                 ...state,
+                current: {
+                    ...state.current,
+                    choices: [ 
+                        ...choices.slice(0, updatedChoiceIndex), 
+                        { 
+                            ...choices[updatedChoiceIndex],
+                            votes: action.payload.votes,
+                        }, 
+                        ...choices.slice(updatedChoiceIndex + 1) 
+                    ]
+                },
                 isVotingInProgress: false,
             }
         case QUESTIONS.VOTE_ON_CHOICE_ERROR:

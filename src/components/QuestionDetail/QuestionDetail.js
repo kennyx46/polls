@@ -39,10 +39,9 @@ export default class QuestionDetail extends Component {
 
     saveVote = () => {
         const { choices, match } = this.props;
-        const { questionId } = match.params;
         const { selectedChoiceIndex } = this.state;
         if (selectedChoiceIndex > -1) {
-            this.props.voteOnChoice({ choiceUrl: choices[selectedChoiceIndex].url, questionId });
+            this.props.voteOnChoice({ choiceUrl: choices[selectedChoiceIndex].url });
         }
     }
 

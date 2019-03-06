@@ -6,7 +6,7 @@ import './QuestionsList.css';
 import { Link } from 'react-router-dom';
 
 const formatDate = (date) => {
-    // simple hacky date formatting, replace for smth better.
+    // simple quick date formatting, we can use `moment.js` if we need later.
     const dateEntry = date.split('T')[0].split('-').reverse().join('.');
     return dateEntry;
 }
