@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 
 import './NewQuestion.css';
 
@@ -39,13 +40,15 @@ export default class NewQuestion extends Component {
         return (
             <Container>
                 <h1>New Question</h1>
+                <div className="my-2">
+                    <Link to='/'>Questions</Link>
+                </div>
                 <Form onSubmit={this.createQuestion}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Question</Form.Label>
                     <Form.Control placeholder="Enter question" value={question} 
                         onChange={(e) => this.setState({question: e.target.value})}/>
                   </Form.Group>
-
 
                   <Form.Group controlId="formBasicPassword">
                     <Form.Label>Choices</Form.Label>

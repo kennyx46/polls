@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import './QuestionsList.css';
+import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 
 const formatDate = (date) => {
@@ -19,13 +19,15 @@ export default class QuestionsList extends Component {
 
     renderQuestion = (question) => {
         return (
-            <Card key={question.url} className="questionCard" onClick={() => this.props.push(question.url)}>
-                <Card.Header>{question.question}</Card.Header>
-                <Card.Body>
-                    <Card.Title className="mb-2 text-muted">{formatDate(question.published_at)}</Card.Title>
-                    <Card.Subtitle>Choices: {question.choices.length}</Card.Subtitle>
-                </Card.Body>
-            </Card>
+            <Col xs={12} md={4} key={question.url}>
+                <Card className="mb-4" onClick={() => this.props.push(question.url)}>
+                    <Card.Header>{question.question}</Card.Header>
+                    <Card.Body>
+                        <Card.Title className="mb-2 text-muted">{formatDate(question.published_at)}</Card.Title>
+                        <Card.Subtitle>Choices: {question.choices.length}</Card.Subtitle>
+                    </Card.Body>
+                </Card>
+            </Col>
         );
     }
 
@@ -43,7 +45,7 @@ export default class QuestionsList extends Component {
         return (
             <Container>
                 <h1>Questions</h1>
-                <div className="newQuestionLink">
+                <div className="my-2">
                     <Link to='/questions/new'>New question</Link>
                 </div>
                 <Row>
