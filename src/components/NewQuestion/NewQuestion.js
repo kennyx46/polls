@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 
 import './NewQuestion.css';
@@ -35,7 +36,7 @@ export default class NewQuestion extends Component {
     }
 
     render() {
-        const { question, choices } = this.state;
+        const { question, choices, error } = this.state;
 
         return (
             <Container>
@@ -43,6 +44,7 @@ export default class NewQuestion extends Component {
                 <div className="my-2">
                     <Link to='/'>Questions</Link>
                 </div>
+                { error && <Alert variant='danger'>Someting went wrong. Please try again later</Alert> }
                 <Form onSubmit={this.createQuestion}>
                   <Form.Group controlId="formBasicEmail">
                     <Form.Label>Question</Form.Label>

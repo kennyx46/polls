@@ -6,6 +6,7 @@ import { push } from 'connected-react-router';
 const mapStateToProps = (state) => ({
     questions: state.questions.list,
     isLoading: state.questions.isLoading,
+    error: state.questions.error,
 });
 
 const mapDispatchToProps = {

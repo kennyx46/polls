@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 
 const formatDate = (date) => {
@@ -32,7 +33,7 @@ export default class QuestionsList extends Component {
     }
 
     render() {
-        const { isLoading, questions } = this.props;
+        const { isLoading, questions, error } = this.props;
 
         if (isLoading) {
             return (
@@ -48,6 +49,7 @@ export default class QuestionsList extends Component {
                 <div className="my-2">
                     <Link to='/questions/new'>New question</Link>
                 </div>
+                { error && <Alert variant='danger'>Someting went wrong. Please try again later</Alert> }
                 <Row>
                     {questions.map((this.renderQuestion))}
                 </Row>               

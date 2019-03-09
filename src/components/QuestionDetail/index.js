@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
     choices: getCurrentQuestionChoicesWithPercentage(state),
     isLoading: state.questions.isLoading,
     isVotingInProgress: state.questions.isVotingInProgress,
+    error: state.questions.error,
 });
 
 const mapDispatchToProps = {

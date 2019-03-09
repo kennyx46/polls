@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                error: action.payload.error,
             }
         case QUESTIONS.GET_QUESTION_REQUEST:
             return {
@@ -41,6 +42,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
+                error: action.payload.error,
             }
         case QUESTIONS.VOTE_ON_CHOICE_REQUEST:
             return {
@@ -69,6 +71,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isVotingInProgress: false,
+                error: action.payload.error,
             }
         default:
             return state;

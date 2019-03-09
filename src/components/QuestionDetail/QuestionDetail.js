@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
 
 import './QuestionDetail.css';
@@ -47,7 +48,7 @@ export default class QuestionDetail extends Component {
     }
 
     render() {
-        const { isLoading, question, choices, isVotingInProgress } = this.props;
+        const { isLoading, question, choices, isVotingInProgress, error } = this.props;
 
         if (isLoading || !question) {
             return (
@@ -63,6 +64,7 @@ export default class QuestionDetail extends Component {
                 <div className="my-2">
                     <Link to='/'>Questions</Link>
                 </div>
+                { error && <Alert variant='danger'>Someting went wrong. Please try again later</Alert> }
                 <h2>Question: {question.question}</h2>
                 <Table bordered hover>
                     <tbody>
