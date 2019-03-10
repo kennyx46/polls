@@ -16,7 +16,7 @@ export default class QuestionDetail extends Component {
 
     componentDidMount() {
         const { questionId } = this.props.match.params;
-         const { question } = this.props;
+        const { question } = this.props;
         if (!question) {
              this.props.getQuestion({ questionId });
         }
